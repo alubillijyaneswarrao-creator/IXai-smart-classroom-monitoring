@@ -21,9 +21,6 @@ marked_names = set()
 def home():
     return "Backend Running ✅"
 
-# ---------------------------
-# START CAMERA (NON-BLOCKING FIX)
-# ---------------------------
 @app.route("/start")
 def start_camera():
 
@@ -55,9 +52,6 @@ def start_camera():
                 break
             continue
 
-        # ---------------------------
-        # DETECTION
-        # ---------------------------
         names = recognize_face(frame)
         print("Detected:", names)
 
@@ -76,7 +70,7 @@ def start_camera():
 
                 print("✅ Attendance Marked:", entry)
 
-        # show camera
+     
         cv2.imshow("Camera", frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -87,9 +81,7 @@ def start_camera():
 
     return "Session Ended"
 
-# ---------------------------
-# DATA API
-# ---------------------------
+
 @app.route("/data")
 def get_data():
     return jsonify({"attendance": attendance_log})
